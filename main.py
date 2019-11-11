@@ -1,5 +1,7 @@
 import tkinter as Tk
 from tkinter import filedialog
+import os
+import re
 
 
 root = Tk.Tk()
@@ -11,6 +13,7 @@ def submitExtension():
 
 
 def targetFolder():
+    global targetDir
     targetDir = filedialog.askdirectory()
     txt3.configure(text="Targeted folder: " + targetDir)
 
