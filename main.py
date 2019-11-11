@@ -1,34 +1,88 @@
-import Tkinter as Tk
-import tkFileDialog
+import tkinter as Tk
+from tkinter import filedialog
+
 
 root = Tk.Tk()
 root.title("File Extension Mover")
-root.geometry("1280x720")
-
-global dirname
-dirname = ""
 
 
-def browse():
-    global dirname
-    dirname = tkFileDialog.askdirectory(
-        parent=root,
-        initialdir="/",
-        title='Please select a directory'
-    )
+def submitExtension():
+    txt2.configure(text="Targeted extension: " + str(ent1.get()))
 
 
-btn1 = Tk.Button(
-    root,
-    text="Open File Explorer",
-    command=browse
-)
-btn1.place(x=0, y=0)
+def targetFolder():
+    targetDir = filedialog.askdirectory()
+    txt3.configure(text="Targeted folder: " + targetDir)
+
+
+def destinationFolder():
+    destinationDir = filedialog.askdirectory()
+    txt4.configure(text="Destination folder: " + destinationDir)
+
+
+def startScript():
+    txt5.configure(text="Status: Running")
+
 
 txt1 = Tk.Label(
     root,
-    text="dirname: " + str(dirname)
+    text="Choose the file extension you would like to target e.g. .png or .jpg"
 )
-txt1.place(x=50, y=50)
+txt1.pack()
+
+ent1 = Tk.Entry(root)
+ent1.pack()
+
+btn1 = Tk.Button(
+    root,
+    text="Submit extension",
+    command=submitExtension
+)
+btn1.pack()
+
+btn2 = Tk.Button(
+    root,
+    text="Choose target folder",
+    command=targetFolder
+)
+btn2.pack()
+
+btn3 = Tk.Button(
+    root,
+    text="Choose destination folder",
+    command=destinationFolder
+)
+btn3.pack()
+
+txt2 = Tk.Label(
+    root,
+    text="Targeted extension: "
+)
+txt2.pack()
+
+txt3 = Tk.Label(
+    root,
+    text="Targeted folder: "
+)
+txt3.pack()
+
+txt4 = Tk.Label(
+    root,
+    text="Destination folder: "
+)
+txt4.pack()
+
+btn4 = Tk.Button(
+    root,
+    text="Start",
+    command=startScript
+)
+btn4.pack()
+
+txt5 = Tk.Label(
+    root,
+    text="Status: Not running"
+)
+txt5.pack()
 
 Tk.mainloop()
