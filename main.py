@@ -5,18 +5,17 @@ root = Tk.Tk()
 root.title("File Extension Mover")
 root.geometry("1280x720")
 
-global folder
-folder = ""
+global dirname
+dirname = ""
 
 
 def browse():
+    global dirname
     dirname = tkFileDialog.askdirectory(
         parent=root,
         initialdir="/",
         title='Please select a directory'
     )
-    global folder
-    folder = dirname
 
 
 btn1 = Tk.Button(
@@ -28,8 +27,8 @@ btn1.place(x=0, y=0)
 
 txt1 = Tk.Label(
     root,
-    text=str(folder)
+    text="dirname: " + str(dirname)
 )
-txt1.place(x=0, y=10)
+txt1.place(x=50, y=50)
 
 Tk.mainloop()
