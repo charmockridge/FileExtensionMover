@@ -1,7 +1,7 @@
 import tkinter as Tk
 from tkinter import filedialog
 import os
-import re
+import shutil
 
 
 root = Tk.Tk()
@@ -19,16 +19,18 @@ def targetFolder():
 
 
 def destinationFolder():
+    global destinationDir
     destinationDir = filedialog.askdirectory()
     txt4.configure(text="Destination folder: " + destinationDir)
 
 
 def startScript():
-    txt5.configure(text="Status: Running")
     for path, root, files in os.walk(targetDir):
         for x in files:
             if x.endswith(str(ent1.get())):
-                print(x)
+                source = targetDir + "/" + x
+                destination = destinationDir + "/" + x
+                shutil.move(source, destination)
 
 
 txt1 = Tk.Label(
@@ -81,15 +83,9 @@ txt4.pack()
 
 btn4 = Tk.Button(
     root,
-    text="Start",
+    text="Move files",
     command=startScript
 )
 btn4.pack()
-
-txt5 = Tk.Label(
-    root,
-    text="Status: Not running"
-)
-txt5.pack()
 
 Tk.mainloop()
