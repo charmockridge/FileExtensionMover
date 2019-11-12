@@ -25,6 +25,10 @@ def destinationFolder():
 
 def startScript():
     txt5.configure(text="Status: Running")
+    for path, root, files in os.walk(targetDir):
+        for x in files:
+            if x.endswith(str(ent1.get())):
+                print(x)
 
 
 txt1 = Tk.Label(
