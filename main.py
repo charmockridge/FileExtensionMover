@@ -1,5 +1,6 @@
 import tkinter as Tk
 from tkinter import filedialog
+from tkinter import ttk
 import os
 import shutil
 
@@ -42,7 +43,7 @@ txt1.pack()
 ent1 = Tk.Entry(root)
 ent1.pack()
 
-btn1 = Tk.Button(
+btn1 = ttk.Button(
     root,
     text="Submit extension",
     command=submitExtension
