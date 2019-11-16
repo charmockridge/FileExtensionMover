@@ -36,7 +36,7 @@ def startScript():
 
 txt1 = Tk.Label(
     root,
-    text="FILE EXTENSION MOVER",
+    text="FILE MOVER",
     font=("arial", 32, "bold")
 )
 txt1.grid(row=0, column=2)
