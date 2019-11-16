@@ -1,6 +1,6 @@
 import tkinter as Tk
 from tkinter import filedialog
-from tkinter import ttk
+from tkinter import StringVar
 import os
 import shutil
 
@@ -10,19 +10,19 @@ root.title("File Extension Mover")
 
 
 def submitExtension():
-    txt2.configure(text="Targeted extension: " + str(ent1.get()))
+    txt3.configure(text="Targeted Extension: " + str(ent1.get()))
 
 
 def targetFolder():
     global targetDir
     targetDir = filedialog.askdirectory()
-    txt3.configure(text="Targeted folder: " + targetDir)
+    txt4.configure(text="Targeted Folder: " + targetDir)
 
 
 def destinationFolder():
     global destinationDir
     destinationDir = filedialog.askdirectory()
-    txt4.configure(text="Destination folder: " + destinationDir)
+    txt5.configure(text="Destination Folder: " + destinationDir)
 
 
 def startScript():
@@ -36,57 +36,90 @@ def startScript():
 
 txt1 = Tk.Label(
     root,
-    text="Choose the file extension you would like to target e.g. .png or .jpg"
+    text="FILE EXTENSION MOVER",
+    font=("arial", 32, "bold")
 )
-txt1.pack()
+txt1.grid(row=0, column=2)
 
-ent1 = Tk.Entry(root)
-ent1.pack()
-
-btn1 = ttk.Button(
+nl1 = Tk.Label(
     root,
-    text="Submit extension",
-    command=submitExtension
+    text=" "
 )
-btn1.pack()
-
-btn2 = Tk.Button(
-    root,
-    text="Choose target folder",
-    command=targetFolder
-)
-btn2.pack()
-
-btn3 = Tk.Button(
-    root,
-    text="Choose destination folder",
-    command=destinationFolder
-)
-btn3.pack()
+nl1.grid(row=1, column=2)
 
 txt2 = Tk.Label(
     root,
-    text="Targeted extension: "
+    text="Enter Target Extension:",
 )
-txt2.pack()
+txt2.grid(row=2, column=0)
+
+ent1 = Tk.Entry(
+    root,
+)
+ent1.grid(row=2, column=2)
+
+btn1 = Tk.Button(
+    root,
+    text="Target Extension",
+    command=submitExtension,
+)
+btn1.grid(row=2, column=4)
+
+nl3 = Tk.Label(
+    root,
+    text=" "
+)
+nl3.grid(row=3, column=2)
+
+btn2 = Tk.Button(
+    root,
+    text="Choose Target Folder",
+    command=targetFolder
+)
+btn2.grid(row=4, column=1)
+
+btn3 = Tk.Button(
+    root,
+    text="Choose Destination Folder",
+    command=destinationFolder
+)
+btn3.grid(row=4, column=3)
+
+nl4 = Tk.Label(
+    root,
+    text=" "
+)
+nl4.grid(row=5, column=2)
 
 txt3 = Tk.Label(
     root,
-    text="Targeted folder: "
+    text="Target Extension: "
 )
-txt3.pack()
+txt3.grid(row=6, column=2)
 
 txt4 = Tk.Label(
     root,
-    text="Destination folder: "
+    text="Target Folder: "
 )
-txt4.pack()
+txt4.grid(row=7, column=2)
+
+txt5 = Tk.Label(
+    root,
+    text="Destination Folder: "
+)
+txt5.grid(row=8, column=2)
+
+nl5 = Tk.Label(
+    root,
+    text=" "
+)
+nl5.grid(row=9, column=2)
 
 btn4 = Tk.Button(
     root,
-    text="Move files",
+    text="Move Files",
     command=startScript
 )
-btn4.pack()
+btn4.grid(row=10, column=2)
 
 Tk.mainloop()
