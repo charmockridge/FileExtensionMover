@@ -1,15 +1,19 @@
-from tkinter import Tk, Label, Button, Entry, filedialog, messagebox
+# Python 3.7.3
+
 import os
 import shutil
+from tkinter import Tk, Label, Button, Entry, filedialog, messagebox
 
 
 class Window:
+    # Declaring variables
     targetDir = ""
     destineDir = ""
     targetExt = ""
     target = ""
     destination = ""
 
+    # Sets variables to null
     def Reset(self):
         self.targetDir = ""
         self.destineDir = ""
@@ -17,29 +21,43 @@ class Window:
         self.target = ""
         self.destination = ""
 
+    # Called when self.btnTargetDir is pressed
     def SelectTargetDir(self):
+        # Path to target directory
         self.targetDir = filedialog.askdirectory()
         messagebox.showinfo(
             title="Target Directory Selected",
             message=f"You have selected { self.targetDir }"
         )
 
+    # Called when self.btnDestineDir is pressed
     def SelectDestineDir(self):
+        # Path to destination directory
         self.destineDir = filedialog.askdirectory()
         messagebox.showinfo(
             title="Destination Directory Selected",
             message=f"You have selected { self.destineDir }"
         )
 
+    # Called when self.btnRunScript is pressed
     def Script(self):
+        # Catches any errors when running script
         try:
+            # Target extension in format of .*
             self.targetExt = str(self.entTargetExt.get())
 
+            # Returns the target directory path, sub directories, and files
             for path, root, files in os.walk(self.targetDir):
+                # Iterates through files in target directory
                 for f in files:
+                    # Checks if the end of the file matches the
+                    # targeted extension.
                     if f.endswith(self.targetExt):
+                        # Stores target file's path
                         self.target = f"{ self.targetDir }/{ f }"
+                        # Stores destination path for file
                         self.destination = f"{ self.destineDir }/{ f }"
+                        # Moves target file to destination directory
                         shutil.move(self.target, self.destination)
 
             messagebox.showinfo(
@@ -64,6 +82,7 @@ class Window:
 
         master.title("File Extension Mover")
 
+        # tkinter label widget
         self.lblTitle = Label(
             master,
             text="FILE EXTENSION MOVER"
@@ -77,6 +96,7 @@ class Window:
             padx=2.5
         )
 
+        # tkinter button widget
         self.btnTargetDir = Button(
             master,
             text="Select Target Folder",
@@ -90,6 +110,7 @@ class Window:
             padx=2.5
         )
 
+        # tkinter button widget
         self.btnDestineDir = Button(
             master,
             text="Select Destination Folder",
@@ -103,6 +124,7 @@ class Window:
             padx=2.5
         )
 
+        # tkinter label widget
         self.lblTargetExt = Label(
             master,
             text="Target Extension:"
@@ -114,6 +136,7 @@ class Window:
             padx=2.5
         )
 
+        # tkinter text entry widget
         self.entTargetExt = Entry(
             master
         )
@@ -125,6 +148,7 @@ class Window:
             padx=2.5
         )
 
+        # tkinter button widget
         self.btnRunScript = Button(
             master,
             text="Move Files",
@@ -139,6 +163,7 @@ class Window:
         )
 
 
-root = Tk()
-gui = Window(root)
-root.mainloop()
+if __name__ == "__main__":
+    root = Tk()
+    gui = Window(root)
+    root.mainloop()
