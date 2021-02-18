@@ -4,5 +4,5 @@ A tkinter GUI application built with Python 3.7.3. It allows the user to select 
 ## What I learned
 * Tkinter and the creation of basic widgets.
 * How to use tkinter in an object-oriented approach.
-* The walk() function from the os module.
-* The move() function from the shutil module.
+* The walk() function from the os module and when the os module should be used.
+* The move() function from the shutil module and when the shutil module should be used.
